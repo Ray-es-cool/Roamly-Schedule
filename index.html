@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050711">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Roamly Schedule</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  
+
+</head>
+
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+
+  <main class="app-shell">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+      <div class="brand">
+
+        <div class="brand-mark">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div>
+          <div class="brand-name">ROAMLY</div>
+          <div class="brand-sub">SCHEDULE</div>
+        </div>
+
+      </div>
+
+      <div class="topbar-actions">
+        <div class="status" id="authStatus">
+          <i></i>
+          SYSTEM READY
+        </div>
+
+        <button class="login-btn" id="loginBtn" type="button">
+          Sign up / Log in
+        </button>
+
+        <button class="logout-btn hidden" id="logoutBtn" type="button">
+          Log out
+        </button>
+      </div>
+
+    </header>
+
+
+    <!-- HOME -->
+
+    <section class="hero" id="homeView">
+
+      <div class="eyebrow">
+        INTELLIGENT TRIP PLANNING
+      </div>
+
+      <h1>
+        Plan smarter.<br>
+        <span>Explore further.</span>
+      </h1>
+
+      <p class="hero-copy">
+        Build your trip with <strong>Roamly.Jr.</strong>,
+        your AI travel assistant, then organize everything
+        on an intelligent schedule.
+      </p>
+
+      <div class="home-actions">
+
+        <button class="primary-btn" id="newTripBtn">
+          <span>＋</span>
+          Create New Trip
+        </button>
+
+        <button class="secondary-btn" id="continueBtn">
+          Continue a Trip
+          <span>→</span>
+        </button>
+
+      </div>
+
+      <div class="trip-preview" id="savedTrips"></div>
+
+    </section>
+
+
+    <!-- NEW TRIP MODAL -->
+
+    <section
+      class="modal-backdrop hidden"
+      id="newTripModal"
+    >
+
+      <div class="modal">
+
+        <button
+          class="close-btn"
+          id="closeModal"
+        >
+          ×
+        </button>
+
+        <div class="eyebrow">
+          NEW TRIP
+        </div>
+
+        <h2>
+          Name your adventure.
+        </h2>
+
+        <p>
+          Give this trip a name so Roamly Schedule
+          can save it on this device.
+        </p>
+
+        <input
+          id="tripName"
+          type="text"
+          maxlength="50"
+          placeholder="e.g. Curaçao Summer Trip"
+          autofocus
+        >
+
+        <button
+          class="primary-btn full"
+          id="createTrip"
+        >
+          Create Trip
+          <span>→</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- TRIP LIST -->
+
+    <section
+      class="modal-backdrop hidden"
+      id="tripModal"
+    >
+
+      <div class="modal">
+
+        <button
+          class="close-btn"
+          id="closeTrips"
+        >
+          ×
+        </button>
+
+        <div class="eyebrow">
+          YOUR TRIPS
+        </div>
+
+        <h2>
+          Continue planning.
+        </h2>
+
+        <div id="tripList"></div>
+
+      </div>
+
+    </section>
+
+    <section
+      class="modal-backdrop hidden"
+      id="usageLimitModal"
+    >
+
+      <div class="modal warning-modal">
+
+        <button
+          class="close-btn"
+          id="closeUsageLimit"
+        >
+          ×
+        </button>
+
+        <div class="eyebrow">
+          FREE PLAN NOTICE
+        </div>
+
+        <h2>
+          Roamly.Jr. is paused.
+        </h2>
+
+        <p id="usageLimitMessage">
+          You are currently on the free version. Please try again in a moment when Roamly.Jr. is available.
+        </p>
+
+        <button
+          class="primary-btn full"
+          id="usageLimitOk"
+        >
+          Okay
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- PLANNER -->
+
+    <section
+      class="planner hidden"
+      id="plannerView"
+    >
+
+
+      <!-- SIDEBAR -->
+
+      <aside class="sidebar">
+
+        <div class="mini-brand">
+          ROAMLY
+          <span>/</span>
+          SCHEDULE
+        </div>
+
+
+        <div class="trip-label">
+          CURRENT TRIP
+        </div>
+
+        <h2 id="currentTripName">
+          Trip
+        </h2>
+
+        <div class="progress-line">
+          <span></span>
+        </div>
+
+
+        <!-- ASSISTANT -->
+
+        <div class="sidebar-card">
+
+          <div class="card-label">
+            YOUR ASSISTANT
+          </div>
+
+          <div class="jr-avatar">
+            JR
+          </div>
+
+          <strong>
+            Roamly.Jr.
+          </strong>
+
+          <p>
+            Ready to help plan your adventure.
+          </p>
+
+        </div>
+
+
+        <!-- DESTINATIONS -->
+
+        <div class="destination-section">
+
+          <div class="destination-heading">
+
+            <div class="card-label">
+              DESTINATIONS
+            </div>
+
+            <span id="destinationCount">
+              0
+            </span>
+
+          </div>
+
+          <div
+            class="destination-list"
+            id="destinationList"
+          >
+            <div class="empty-destinations">
+              No destinations yet.
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="sidebar-navigation">
+
+          <button
+            class="side-btn active"
+            data-tab="chat"
+          >
+            ✦ Roamly.Jr.
+          </button>
+
+          <button
+            class="side-btn"
+            data-tab="schedule"
+          >
+            ▦ Schedule
+          </button>
+
+          <button
+            class="side-btn"
+            id="frontPageBtn"
+          >
+            ↩ Front Page
+          </button>
+
+          <button
+            class="side-btn"
+            id="resetTrip"
+          >
+            ↻ Reset Trip
+          </button>
+
+        </div>
+
+      </aside>
+
+
+      <!-- WORKSPACE -->
+
+      <section class="workspace">
+
+        <div class="workspace-head">
+
+          <div>
+
+            <div
+              class="eyebrow"
+              id="sectionEyebrow"
+            >
+              AI TRAVEL ASSISTANT
+            </div>
+
+            <h2 id="sectionTitle">
+              Roamly.Jr.
+            </h2>
+
+          </div>
+
+          <div class="live-pill">
+            <i></i>
+            ONLINE
+          </div>
+
+        </div>
+
+
+        <!-- CHAT -->
+
+        <div
+          class="tab-panel"
+          id="chatPanel"
+        >
+
+          <div
+            class="chat-window"
+            id="chatWindow"
+          >
+
+            <div class="message ai-message">
+
+              <div class="message-avatar">
+                JR
+              </div>
+
+              <div>
+
+                <div class="message-name">
+                  Roamly.Jr.
+                </div>
+
+                <p>
+                  Hey! I'm Roamly.Jr. 👋
+                  I'll help you plan your trip,
+                  find places you'll love, and
+                  organize everything into your schedule.
+                </p>
+
+                <p>
+                  Tell me where you'll be staying,
+                  which country you're visiting,
+                  and what you'd like to do.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="quick-actions">
+
+            <button>
+              🏖 Find beaches
+            </button>
+
+            <button>
+              🍽 Find food
+            </button>
+
+            <button>
+              🎯 Find activities
+            </button>
+
+            <button>
+              📅 Plan my trip
+            </button>
+
+          </div>
+
+
+          <div class="chat-input">
+
+            <input
+              id="chatInput"
+              placeholder="Tell Roamly.Jr. what you're looking for..."
+              autocomplete="off"
+            >
+
+            <button id="sendBtn">
+              ↑
+            </button>
+
+          </div>
+
+          <div class="ai-note">
+            Roamly.Jr. can read and modify your current trip.
+          </div>
+
+        </div>
+
+
+        <!-- SCHEDULE -->
+
+        <div
+          class="tab-panel hidden"
+          id="schedulePanel"
+        >
+
+          <div class="schedule-toolbar">
+
+            <div>
+
+              <div class="card-label">
+                ITINERARY
+              </div>
+
+              <h3 id="scheduleTitle">
+                Your Schedule
+              </h3>
+              <div class="trip-meta" id="tripDateRange">Trip dates not set</div>
+              <div class="trip-meta sub" id="tripHotelLocation">Home base not set</div>
+
+            </div>
+
+            <button
+              class="secondary-btn small"
+              id="smartPlanBtn"
+            >
+              ✦ Smart Plan
+            </button>
+
+          </div>
+
+          <div class="trip-management-prompt" id="tripManagementPrompt">
+            Trip management is ready.
+          </div>
+
+          <div class="time-editor-backdrop hidden" id="scheduleTimeEditor" aria-modal="true" role="dialog">
+            <div class="time-editor-modal">
+              <button class="close-btn" id="closeTimeEditor" aria-label="Close time editor">×</button>
+              <div class="eyebrow">SCHEDULE TIME</div>
+              <h2 id="scheduleTimeTitle">Set time</h2>
+
+              <div class="time-editor-fields">
+                <label>
+                  <span>Time</span>
+                  <input id="scheduleTimeInput" type="time">
+                </label>
+
+                <label>
+                  <span>Reminder</span>
+                  <input id="scheduleReminderInput" type="number" min="0" max="180" step="5" value="30">
+                </label>
+              </div>
+
+              <div class="time-editor-actions">
+                <button class="secondary-btn small" id="cancelTimeEditor" type="button">Cancel</button>
+                <button class="primary-btn small" id="saveTimeEditor" type="button">Save time</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="calendar-header" id="calendarHeader">Month</div>
+
+          <div class="calendar-weekdays">
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+            <span>Sun</span>
+          </div>
+
+          <div class="schedule-grid" id="scheduleGrid"></div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  <section class="auth-modal hidden" id="authModal" aria-live="polite">
+    <div class="auth-card">
+      <button class="close-btn" id="closeAuthModal" aria-label="Close sign up">×</button>
+
+      <div class="eyebrow">ACCOUNT</div>
+      <h2 id="authTitle">Create your account</h2>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth-mode="signup" type="button">Sign up</button>
+        <button class="auth-tab" data-auth-mode="login" type="button">Log in</button>
+      </div>
+
+      <form id="authForm" class="auth-form">
+        <label id="authNameWrap" class="auth-field">
+          <span>Full name</span>
+          <input id="authName" type="text" placeholder="Your name" autocomplete="name">
+        </label>
+
+        <label class="auth-field">
+          <span>Email</span>
+          <input id="authEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        </label>
+
+        <label class="auth-field">
+          <span>Password</span>
+          <input id="authPassword" type="password" placeholder="At least 6 characters" autocomplete="current-password" required>
+        </label>
+
+        <button class="primary-btn full" id="authSubmitBtn" type="submit">Create account</button>
+      </form>
+
+      <div class="auth-divider">
+        <span>or</span>
+      </div>
+
+      <button class="secondary-btn full" id="gmailLoginBtn" type="button">Continue with Gmail</button>
+
+      <p id="authMessage" class="auth-message" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="mascot-overlay hidden" id="mascotOnboarding" aria-live="polite">
+    <div class="tour-highlight" id="tourHighlight"></div>
+    <div class="tour-pointer" id="tourPointer"></div>
+
+    <div class="mascot-dialog" id="mascotDialog">
+      <div class="mascot-header">
+        <div class="jr-avatar mascot-avatar">JR</div>
+        <div>
+          <div class="card-label">ROAMLY.JR.</div>
+          <strong>Trip guide</strong>
+        </div>
+      </div>
+
+      <div class="mascot-bubble" id="mascotBubble">
+        Hi, I'm Roamly.Jr. 👋 I'll walk you through the basics and show you how this planner works.
+      </div>
+
+      <div class="mascot-actions">
+        <button class="secondary-btn small" id="skipMascotBubble" type="button">Skip</button>
+        <button class="secondary-btn small" id="prevMascotBubble" type="button">Back</button>
+        <button class="primary-btn small" id="nextMascotBubble" type="button">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
