@@ -2093,14 +2093,6 @@ function setTourPosition(targetSelector, offsetX = 0, offsetY = 0) {
     return;
   }
 
-<<<<<<< HEAD
-  const rect = target.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2 + offsetX;
-  const centerY = rect.top + rect.height / 2 + offsetY;
-
-  highlight.style.width = `${Math.max(rect.width + 34, 110)}px`;
-  highlight.style.height = `${Math.max(rect.height + 34, 110)}px`;
-=======
   const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
   const isMobile = viewportWidth <= 768;
@@ -2119,7 +2111,6 @@ function setTourPosition(targetSelector, offsetX = 0, offsetY = 0) {
 
   highlight.style.width = `${highlightSize}px`;
   highlight.style.height = `${highlightSize}px`;
->>>>>>> 3d98f55 (Production polish + mobile onboarding pass)
   highlight.style.left = `${centerX}px`;
   highlight.style.top = `${centerY}px`;
   highlight.style.opacity = "1";
@@ -2638,8 +2629,6 @@ window.addEventListener("blur", () => {
     redirectToSignupIfIgnored();
   }
 });
-<<<<<<< HEAD
-=======
 
 window.addEventListener("resize", () => {
   if (!currentUser && $("mascotOnboarding") && !$("mascotOnboarding").classList.contains("hidden")) {
@@ -2649,7 +2638,6 @@ window.addEventListener("resize", () => {
     }
   }
 });
->>>>>>> 3d98f55 (Production polish + mobile onboarding pass)
 
 document.addEventListener("click", event => {
   redirectGuestToAuth(event);
