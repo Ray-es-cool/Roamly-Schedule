@@ -1,0 +1,105 @@
+{
+  "roamly-user-c722bc3b": [
+    {
+      "id": "8ee6965c-3ba9-4071-a7d5-c996426d63c5",
+      "name": "afaeffa",
+      "created": 1789347826220,
+      "hotel": "Marriott Hotel",
+      "country": "Guyana",
+      "homePoint": {
+        "hotel": "Marriot Hotel",
+        "country": "Guyana"
+      },
+      "startDate": "",
+      "endDate": "",
+      "destinations": [],
+      "chatHistory": [
+        {
+          "type": "user",
+          "text": "Find beaches near my hotel"
+        },
+        {
+          "type": "ai",
+          "text": "I would love to find the best nearby spot for you! Before I look up recommendations, can you tell me where you are staying and how long you will be staying?"
+        },
+        {
+          "type": "user",
+          "text": "i will be staying at the marriot hotel in guyana from the 5th of the next month to the 6"
+        },
+        {
+          "type": "ai",
+          "text": "I have saved your stay at the Marriott Hotel in Guyana from the 5th to the 6th. Since the Marriott is situated right on the Kingston oceanfront in Georgetown, you are directly adjacent to the seawall and coastal views. While Guyana's Atlantic coastline near Georgetown features oceanfront promenades rather than traditional white-sand swimming shores, there are excellent river beaches and coastal spots nearby. Here are a couple of top-rated coastal options for your trip.\n\n• Georgetown Seawall & Esplanade — Highly rated for ocean breeze walks, sunset views, and immediate proximity to your hotel.\n• Saxacalli Beach — Famous freshwater river beach with golden sands and calm swimming waters."
+        },
+        {
+          "type": "user",
+          "text": "scrap that set my thing i ll be staying from dec 2027 5 to dec 2027 7"
+        },
+        {
+          "type": "ai",
+          "text": "Got it. I've updated your trip dates to December 5–7, 2027, keeping your home base at the Marriott Hotel in Guyana. That gives us a focused 3-day window to build your schedule.\n\nWhat kind of vibe are you aiming for during this stay—relaxing oceanfront breezes, local dining, or exploring Georgetown's key sights?\n\n• Sky Pub, Choice Trading Roof Top — Popular local option. This Sky Pub, Choice Trading Roof Top is well suited for top attractions in Guyana.\n• TopEnd Gym (GMR&SC) — Popular local option. This TopEnd Gym (GMR&SC) is well suited for top attractions in Guyana."
+        }
+      ],
+      "schedule": {
+        "Monday": [],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": [],
+        "Sunday": []
+      },
+      "userLocation": null
+    }
+  ],
+  "roamly-user-3f5746cf": [],
+  "roamly-user-95567b26": [
+    {
+      "id": "7a6c1661-adc6-4c62-be5a-7caeb4c08fd4",
+      "name": "gg",
+      "created": 1794105062822,
+      "hotel": "",
+      "country": "",
+      "homePoint": {
+        "hotel": "",
+        "country": ""
+      },
+      "startDate": "",
+      "endDate": "",
+      "destinations": [],
+      "chatHistory": [],
+      "schedule": {
+        "Monday": [],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": [],
+        "Sunday": []
+      }
+    },
+    {
+      "id": "6f1a3f4f-d867-4100-8a56-6ea2178c5511",
+      "name": "ggg",
+      "created": 1794105548300,
+      "hotel": "",
+      "country": "",
+      "homePoint": {
+        "hotel": "",
+        "country": ""
+      },
+      "startDate": "",
+      "endDate": "",
+      "destinations": [],
+      "chatHistory": [],
+      "schedule": {
+        "Monday": [],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": [],
+        "Sunday": []
+      }
+    }
+  ]
+}
